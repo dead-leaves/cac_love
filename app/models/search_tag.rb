@@ -1,0 +1,2 @@
+class SearchTag < ApplicationRecord
+end
