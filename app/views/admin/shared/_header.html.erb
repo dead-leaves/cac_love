@@ -1,70 +1,57 @@
 <header>
-      <nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand">かく🤍らゔ</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <% if admin_signed_in? %>
 
-        <div class="container">
-        <%= link_to root_path, class: "navbar-brand" do %>
-          <span>caclobe</span>
+        <li class="nav-item">
+          <%= link_to admin_users_index_path, class: "nav-link" do %>
+          <i class="fa-solid fa-users"></i> 会員一覧
+          <% end %>
+        </li>
+
+
+        <li class="nav-item">
+          <%= link_to admin_posts_index_path, class: "nav-link" do %>
+          <i class="fa-solid fa-seedling"></i> みんなの投稿一覧
+          <% end %>
+        </li>
+
+
+        <li class="nav-item">
+          <%= link_to  destroy_admin_session_path, method: :delete, class: "nav-link" do %>
+          <i class="fa-solid fa-right-from-bracket"></i> ログアウト
+          <% end %>
+        </li>
+
+      </ul>
+
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+
+
+        <% else %>
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <%= link_to  new_admin_session_path, class: "nav-link" do %>
+          <i class="fa-solid fa-right-to-bracket"></i> ログイン
+          <% end %>
+        </li>
+
         <% end %>
+      </ul>
 
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
 
-          <div class="collapse navbar-collapse" id="navbarNavDropdown" style>
-           <ul class="navbar-nav ml-auto">
-
-            <% if user_signed_in? %>
-               <li>
-                 <%= link_to user_path(@user.id) , class: "nav-link text-light" do %>
-                   <i class="fas fa-home"></i> Home
-                 <% end %>
-               </li>
-
-                <li>
-                 <%= link_to users_path, class: "nav-link text-light" do %>
-                   <i class="fas fa-users"></i> Users
-                 <% end %>
-                </li>
-
-                <li>
-                 <%= link_to books_path, class: "nav-link text-light" do %>
-                   <i class="fas fa-book-open"></i> Books
-                 <% end %>
-                </li>
-
-                <li>
-                 <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-light" do %>
-                   <i class="fas fa-sign-out-alt"></i>Log out<% end %>
-                </li>
-
-            <% else %>
-
-                <li>
-                 <%= link_to root_path, class: "nav-link text-light" do %>
-                   <i class="fas fa-home"></i> Home
-                 <% end %>
-                </li>
-
-                <li>
-                 <%= link_to  home_about_path, class: "nav-link text-light" do %>
-                   <i class="fas fa-link"></i> About
-                 <% end %>
-                </li>
-
-                <li>
-                 <%= link_to "/users/sign_up", class: "nav-link text-light" do %>
-                   <i class="fas fa-user-plus"></i> Sign up <% end %>
-                </li>
-
-                <li>
-                 <%= link_to "/users/sign_in", class: "nav-link text-light" do %>
-                   <i class="fas fa-sign-in-alt"></i> Log in <% end %>
-                </li>
-
-            <% end %>
-
-           </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
+    </div>
+  </div>
+</nav>
+</header>

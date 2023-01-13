@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  
-  
+
+
    def after_sign_in_path_for(resource)
 
     case resource
@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
       admin_path
 
     when User
-      root_path
+      public_posts_index_path
     end
 
    end
