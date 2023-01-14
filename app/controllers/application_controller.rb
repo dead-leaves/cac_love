@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
       admin_path
 
     when User
-      public_posts_index_path
+      posts_path
     end
 
    end

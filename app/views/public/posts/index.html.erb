@@ -1,3 +1,47 @@
 <%= render "public/shared/header" %>
-<h1>Public::Posts#index</h1>
-<p>Find me in app/views/public/posts/index.html.erb</p>
+
+
+ <%= image_tag @user.get_profile_image(200, 200) %>
+  <%= @user.name %>
+  <%= @user.introduction %>
+
+<%= link_to "投稿する", new_post_path %>
+
+<%= form_with model: @post, method: :get do %>
+   <%= text_field_tag :tag %>
+   <%= submit_tag 'タグを追加' %>
+<% end %>
+
+
+
+<%= form_with model: @post, method: :get do %>
+
+
+    <% Tag.all.each do |t| %>
+        <li><%= check_box :tag_ids, t.tag_name %><%= t.tag_name %></li>
+    <% end %>
+
+    <%= submit_tag '検索' %>
+<% end %>
+
+
+
+<h1>みんなの投稿一覧</h1>
+
+
+<% @posts.each do |post| %>
+
+<%= link_to post_path(post) do %>
+< %= image_tag post.get_image(200, 200) %><br>
+<% end %>
+
+<p><%= l post.created_at %></p>
+<p><%= post.title %></p>
+<div class="d-inline-block text-ttuncate">
+  <%= post.body %>
+</div>
+
+<%= image_tag post.user.get_profile_image(200, 200) %><br>
+<%= post.user.name %><br>
+
+<% end %>

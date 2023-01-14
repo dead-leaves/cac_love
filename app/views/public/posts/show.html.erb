@@ -1,3 +1,16 @@
 <%= render "public/shared/header" %>
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<h1>投稿詳細</h1>
+
+<div>
+  <%= image_tag @post.get_image(300, 300) %>
+  <p>タイトル：<%= @post.title %></p>
+  
+  <% @post.tags.each do |tag| %>
+    <span><%= tag.tag_name %></span>
+  <% end %>
+  
+  <p>本文：<%= @post.body %></p>
+  <p>投稿ユーザー画像：<%= image_tag @post.user.get_profile_image(100, 100) %></p>
+  <p>ユーザーネーム：<%= @post.user.name %></p>
+  <p>投稿日：<%= l @post.created_at %></p>
+</div>
