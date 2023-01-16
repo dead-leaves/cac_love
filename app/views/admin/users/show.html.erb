@@ -1,2 +1,27 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<%= render "admin/shared/header" %>
+
+
+<h1>ユーザー詳細</h1>
+
+<div>
+  <%= image_tag @user.get_profile_image(200,200) %>
+  <h3><%= @user.name %></h3>
+  <p><%= @user.introduction %></p>
+</div>
+
+
+
+<h4>ユーザーの投稿一覧</h4>
+<% @posts.each do |post| %>
+
+<div>
+<%= link_to admin_post_path(post.id) do %>
+  <%= image_tag post.get_image(100,100) %>
+<% end %>
+
+  <%= l post.created_at %>
+  <p>タイトル：<%= post.title %></p>
+  <p>本文<%= post.body %></p>
+  <p>コメント件数</p>
+</div>
+<% end %>

@@ -1,8 +1,9 @@
 class Public::UsersController < ApplicationController
-before_action :authenticate_usre!
+before_action :authenticate_user!, except: :show
 
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts
   end
 
   def edit
@@ -10,7 +11,13 @@ before_action :authenticate_usre!
   end
 
   def withdraw
+  end
 
+  def destroy
+    @user = User.find(params[:id])
+    if @user.destroy
+      redirect_to root_path
+    end
   end
 
 

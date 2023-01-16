@@ -1,3 +1,6 @@
 <%= render "public/shared/header" %>
-<h1>Public::Users#withdraw</h1>
-<p>Find me in app/views/public/users/withdraw.html.erb</p>
+<h1>本当に削除しますか？</h1>
+<p>削除すると全てのデータが消えてしまいます。</p>
+
+<%= link_to "はい", user_path(@user), method: :delete %>|<%= link_to "いいえ", post_path %>
+
