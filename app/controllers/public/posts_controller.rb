@@ -18,8 +18,7 @@ before_action :authenticate_user!, except: :show
   end
 
   def index
-    @posts = Post.all
-    @user = current_user
+    @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
 
     if params[:tag]
       Tag.create(tag_name: params[:tag])
@@ -27,11 +26,11 @@ before_action :authenticate_user!, except: :show
 
 
     if params[:tag_ids]
-      @post = []
+      @posts = []
       params[:tag_ids].each do |key, value|
         if value == "1"
-          tag_post = Tag.find_by(tag_name: key).post
-          @post = @post.empty? ? tag_post : @post & tag_post
+          tag_posts = Tag.find_by(tag_name: key).posts
+          @posts = @posts.empty? ? tag_posts : @posts & tag_posts
         end
       end
     end
@@ -45,11 +44,29 @@ before_action :authenticate_user!, except: :show
 
   def edit
     @post = Post.find(params[:id])
+
   end
+
+  def update
+    @post = Post.find(params[:id])
+    @posts = Post.all
+    @post.user_id = current_user.id
+    @user = current_user
+      if @post.update(post_params)
+      redirect_to post_path(@post.id)
+      else
+      render :index
+      end
+  end
+
 
   def destroy
     @post = Post.find(params[:id])
-
+    if @post.destroy
+      redirect_to posts_path
+    else
+      render :show
+    end
   end
 
 

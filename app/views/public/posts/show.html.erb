@@ -4,13 +4,21 @@
 <div>
   <%= image_tag @post.get_image(300, 300) %>
   <p>タイトル：<%= @post.title %></p>
-  
+
   <% @post.tags.each do |tag| %>
     <span><%= tag.tag_name %></span>
   <% end %>
-  
+
   <p>本文：<%= @post.body %></p>
-  <p>投稿ユーザー画像：<%= image_tag @post.user.get_profile_image(100, 100) %></p>
+
+
+  <% if @post.user == current_user %>
+  <%= link_to "編集", edit_post_path(@post) %>|<%= link_to "削除", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか?" %>
+  <% end %>
+
+  <p>投稿ユーザー画像：<%= link_to user_path(@post.user.id) do %>
+                        <%= image_tag @post.user.get_profile_image(100, 100) %></p>
+                       <% end %>
   <p>ユーザーネーム：<%= @post.user.name %></p>
   <p>投稿日：<%= l @post.created_at %></p>
 </div>

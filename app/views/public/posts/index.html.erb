@@ -1,11 +1,16 @@
 <%= render "public/shared/header" %>
 
+<% if user_signed_in? %>
 
- <%= image_tag @user.get_profile_image(200, 200) %>
-  <%= @user.name %>
-  <%= @user.introduction %>
+ <%= image_tag current_user.get_profile_image(200, 200) %>
+ <%= current_user.name %>
+ <%= link_to new_post_path do %>
+     <i class="fa-solid fa-pen-to-square"></i>
+ <% end %>
 
-<%= link_to "投稿する", new_post_path %>
+<% end %>
+
+
 
 <%= form_with model: @post, method: :get do %>
    <%= text_field_tag :tag %>
@@ -22,6 +27,7 @@
     <% end %>
 
     <%= submit_tag '検索' %>
+    
 <% end %>
 
 
@@ -31,8 +37,12 @@
 
 <% @posts.each do |post| %>
 
+<% post.tags.each do |tag| %>
+    <span><%= tag.tag_name %></span>
+<% end %>
+
 <%= link_to post_path(post) do %>
-< %= image_tag post.get_image(200, 200) %><br>
+    <%= image_tag post.get_image(200, 200) %><br>
 <% end %>
 
 <p><%= l post.created_at %></p>
@@ -41,7 +51,11 @@
   <%= post.body %>
 </div>
 
-<%= image_tag post.user.get_profile_image(200, 200) %><br>
+
+<%= link_to user_path(post.user.id) do %>
+  <%= image_tag post.user.get_profile_image(200, 200) %><br>
+<% end %>
 <%= post.user.name %><br>
+
 
 <% end %>
