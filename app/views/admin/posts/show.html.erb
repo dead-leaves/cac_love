@@ -1,3 +1,29 @@
 <%= render "admin/shared/header" %>
-<h1>Admin::Posts#show</h1>
-<p>Find me in app/views/admin/posts/show.html.erb</p>
+
+<h1>投稿詳細</h1>
+
+<div>
+  <%= image_tag @post.get_image(300, 300) %>
+  <p>タイトル：<%= @post.title %></p>
+  <p>本文：<%= @post.body %></p>
+  <p>投稿ユーザー画像：
+    <%= link_to user_path(@post.user.id) do %>
+        <%= image_tag @post.user.get_profile_image(100, 100) %></p>
+    <% end %>
+  <p>ユーザーネーム：<%= @post.user.name %></p>
+  <p>投稿日：<%= l @post.created_at %></p>
+</div>
+
+<div>
+  
+  <p>コメント件数：<%= @post.post_comments.count %></p>
+  
+  <% @post.post_comments.each do |post_comment| %>
+  
+    <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
+    <%= post_comment.user.name %>
+    <%= l post_comment.created_at %><%= post_comment.comment %>
+    <%= link_to "削除",  post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+    
+  <% end %>
+</div>

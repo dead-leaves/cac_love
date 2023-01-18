@@ -57,5 +57,6 @@
 <% end %>
 <%= post.user.name %><br>
 
+<p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
 
 <% end %>
