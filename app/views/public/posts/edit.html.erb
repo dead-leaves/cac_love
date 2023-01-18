@@ -1,7 +1,7 @@
 <%= render "public/shared/header" %>
 <h1>編集</h1>
 
-<%= form_with model: @post, url: post_path, method: :patch do |f| %>
+<%= form_with model: @post, url: post_path(@post), method: :patch do |f| %>
 
 
 <div class=field>

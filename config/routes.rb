@@ -31,10 +31,12 @@ Rails.application.routes.draw do
      get root to: 'homes#top'
      
      get '/search', to: 'searches#search'
-     get '/users/withdraw', to: 'users#withdraw'
 
-     resources :users, only: [:index, :show, :edit, :update, :destroy]
-
+     resources :users, only: [:index, :show, :edit, :update, :destroy] do
+       member do
+         get 'withdraw'
+       end
+     end
      resources :posts do
        resource :favorites, only: [:create, :destroy]
        resources :post_comments, only: [:create, :destroy]
