@@ -6,6 +6,10 @@
   <%= image_tag @post.get_image(300, 300) %>
   <p>タイトル：<%= @post.title %></p>
   <p>本文：<%= @post.body %></p>
+  <%= link_to admin_post_path(@post), class: "btn btn-outline-danger", method: :delete, "data-confirm" => "本当に削除しますか?" do %>
+    この投稿を削除する
+  <% end %>
+  
   <p>投稿ユーザー画像：
     <%= link_to user_path(@post.user.id) do %>
         <%= image_tag @post.user.get_profile_image(100, 100) %></p>
@@ -23,7 +27,8 @@
     <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
     <%= post_comment.user.name %>
     <%= l post_comment.created_at %><%= post_comment.comment %>
-    <%= link_to "削除",  post_post_comment_path(post_comment.post, post_comment), method: :delete %>
-    
+    <%= link_to admin_post_post_comment_path(post_comment.post, post_comment), class: "btn btn-outline-danger", method: :delete, "data-confirm" => "本当に削除しますか?" do %>
+     このコメントを削除する
+    <% end %>
   <% end %>
 </div>

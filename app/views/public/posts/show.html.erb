@@ -1,13 +1,31 @@
 <%= render "public/shared/header" %>
-<h1>投稿詳細</h1>
+
+<div class="container-fluid">
+ <div class="row">
+   <h1 class="fw-bold">投稿詳細</h1>
+   
+   <div class="col-lg-6">
+    <%= image_tag @post.get_image(300, 300) %>
+   </div>
+   
+   <div class="col-lg-6">
+     <p>タイトル：<%= @post.title %></p>
+      <% @post.tags.each do |tag| %>
+        <%= tag.tag_name %>
+      <% end %>
+   </div>
+    
+    
+    
+    
+    
+    
 
 <div>
-  <%= image_tag @post.get_image(300, 300) %>
-  <p>タイトル：<%= @post.title %></p>
+  
+  
 
-  <% @post.tags.each do |tag| %>
-    <span><%= tag.tag_name %></span>
-  <% end %>
+ 
 
   <p>本文：<%= @post.body %></p>
 
@@ -29,13 +47,13 @@
     <% if @post.favorited_by?(current_user) %>
       <p>
         <%= link_to post_favorites_path(@post), method: :delete do %>
-          ♥<%= @post.favorites.count %> いいね
+          <i class="fa-solid fa-heart" style="color: red;"></i><%= @post.favorites.count %> いいね
         <% end %>
       </p>
       <% else %>
       <p>
         <%= link_to post_favorites_path(@post), method: :post do %>
-          ♡<%= @post.favorites.count %> いいね
+          <i class="fa-regular fa-heart" style="color: red;" ></i><%= @post.favorites.count %> いいね
         <% end %>
       </p>
     <% end %>

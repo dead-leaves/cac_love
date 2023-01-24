@@ -1,2 +1,32 @@
-<h1>Public::Searches#search</h1>
-<p>Find me in app/views/public/searches/search.html.erb</p>
+<%= render "public/shared/header" %>
+
+<div class="container-fluid">
+ <div class="row">
+    
+    <div class="col-md-3">
+     <div class="bg-success p-1 text-dark bg-opacity-25">
+        <% if user_signed_in? %>
+
+         <%= image_tag current_user.get_profile_image(200, 200), class: "rounded-circle"; %>
+         <%= current_user.name %></br>
+         <%= link_to new_post_path do %><i class="fa-solid fa-pen-to-square fa-2x mt-2"></i>投稿する<% end %>
+
+        <% end %>
+     </div>
+    </div>
+    
+    
+    <div class="col-md-9">
+
+        <% if @model == 'user' %>
+	        <h3 class="fw-bold">ユーザーで検索 "<%= @content %>"</h3>
+            <%= render 'public/users/search_index', users: @records %>
+  
+        <% elsif @model == 'post' %>
+        	<h3 class="fw-bold">投稿で検索 "<%= @content %>"</h3>
+            <%= render 'public/posts/search_index', posts: @records %>
+        <% end %>
+        
+    </div>
+ </div>
+</div>

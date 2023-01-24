@@ -10,7 +10,7 @@
 
 <%= link_to "お気に入り", favorites_user_path(@user) %>
 
-<% if @user == current_user %>
+<% if @user == current_user && @user.name != "guestuser" %>
   <%= link_to "編集", edit_user_path(@user) %>
 <% end %>
 
@@ -26,5 +26,8 @@
   <p>本文<%= post.body %></p>
   <p>いいね</p>
   <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
+  
 </div>
+
+
 <% end %>

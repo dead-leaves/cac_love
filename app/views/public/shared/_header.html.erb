@@ -2,9 +2,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
 
-    <%= link_to root_path, class: "navbar-brand" do %>
-      <span>かく🤍らゔ</span>
+    <%= link_to root_path, class: "navbar-brand me-3" do %>
+      <span>かく🌵らゔ</span>
     <% end %>
+   
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -13,32 +14,36 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <% if user_signed_in? %>
 
+        <span class="nav-item fw-bold me-2">
+          🎉ようこそ！<%= current_user.name %>さん
+        </span>
+
+
         <li class="nav-item">
           <%= link_to posts_path, class: "nav-link" do %>
-          <i class="fa-solid fa-seedling"></i> みんなの投稿一覧
+          <i class="fa-solid fa-seedling fa-2x" style="color: green;"></i> みんなの投稿一覧
           <% end %>
         </li>
 
 
         <li class="nav-item">
           <%= link_to user_path(current_user.id), class: "nav-link" do %>
-          <i class="fa-solid fa-address-card"></i> マイページ
+          <i class="fa-solid fa-address-card fa-2x"></i> マイページ
           <% end %>
         </li>
 
 
         <li class="nav-item">
-          <%= link_to  destroy_user_session_path, method: :delete, class: "nav-link" do %>
-          <i class="fa-solid fa-right-from-bracket"></i> ログアウト
+          <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+          <i class="fa-solid fa-right-from-bracket fa-2x"></i> ログアウト
           <% end %>
         </li>
 
       </ul>
 
-        <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        <div class="d-flex">
+            <%= render "public/shared/search_form" %>
+        </div>
 
 
         <% else %>
@@ -48,25 +53,26 @@
 
         <li class="nav-item">
           <%= link_to posts_path, class: "nav-link" do %>
-          <i class="fa-solid fa-seedling"></i> みんなの投稿一覧
+          <i class="fa-solid fa-seedling fa-2x"></i> みんなの投稿一覧
           <% end %>
         </li>
 
         <li class="nav-item">
-          <%= link_to  new_user_registration_path, class: "nav-link" do %>
-          <i class="fa-solid fa-user-plus"></i> 新規登録
+          <%= link_to new_user_registration_path, class: "nav-link" do %>
+          <i class="fa-solid fa-user-plus fa-2x"></i> 新規登録
           <% end %>
         </li>
 
         <li class="nav-item">
-          <%= link_to  new_user_session_path, class: "nav-link" do %>
-          <i class="fa-solid fa-right-to-bracket"></i> ログイン
+          <%= link_to new_user_session_path, class: "nav-link" do %>
+          <i class="fa-solid fa-right-to-bracket fa-2x"></i> ログイン
           <% end %>
         </li>
 
         <li class="nav-item">
-
-          <i class="fa-solid fa-clipboard-user"></i> ゲストログイン
+          <%= link_to  public_guest_sign_in_path, class: "nav-link", method: :post do %>
+          <i class="fa-solid fa-clipboard-user fa-2x"></i> ゲストログイン
+          <% end %>
 
         </li>
 

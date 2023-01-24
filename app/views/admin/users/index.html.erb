@@ -3,14 +3,15 @@
 
 <% @users.each do |user| %>
 
-<%= user.id %>
+  <%= user.id %>
 
-<%= link_to admin_user_path(user.id) do %>
-  <%= image_tag user.get_profile_image(200,200) %>
-  <%= user.name %>
+  <%= link_to admin_user_path(user.id) do %>
+    <%= image_tag user.get_profile_image(200,200) %>
+    <%= user.name %>
+  <% end %>
+  投稿数<%= user.posts.count %>
+  コメント数<%= user.post_comments.count %>
+
 <% end %>
 
-投稿数
-コメント数
-
-<% end %>
+<%= paginate @users %>

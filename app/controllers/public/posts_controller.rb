@@ -18,7 +18,7 @@ before_action :authenticate_user!, except: [:index, :show]
   end
 
   def index
-    @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
+    @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.page(params[:page])
 
     if params[:tag]
       Tag.create(tag_name: params[:tag])

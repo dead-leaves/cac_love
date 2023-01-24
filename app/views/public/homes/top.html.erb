@@ -1,23 +1,5 @@
 <%= render "public/shared/header" %>
-<h1>かく🤍らゔ</h1>
+<h1 class="fw-bold">かく🌵らゔ</h1>
 <p>サボテン・多肉植物loveなみんなの投稿</p>
 
 
-
-<% @posts.each do |post| %>
-
-<%= link_to post_path(post.id) do %>
-    <%= image_tag post.get_image(200, 200) %><br>
-<% end %>
-
-<p><%= l post.created_at %></p>
-<p><%= post.title %></p>
-<div class="d-inline-block text-ttuncate">
-  <%= post.body %>
-</div>
-
-
-<%= image_tag post.user.get_profile_image(200, 200) %><br>
-<%= post.user.name %><br>
-
-<% end %>
