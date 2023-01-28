@@ -3,8 +3,6 @@ class Admin::UsersController < ApplicationController
 
   def index
     @users = User.page(params[:page])
-   
-    
   end
 
   def show
@@ -17,8 +15,7 @@ class Admin::UsersController < ApplicationController
     @user.destroy
     redirect_to user_path
   end
-
-
+  
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
   end

@@ -1,3 +1,25 @@
 <%= render "admin/shared/header" %>
-<h1>Admin::Searches#search</h1>
-<p>Find me in app/views/admin/searches/search.html.erb</p>
+
+<div class="container">
+ <div class="row">
+     
+    <h1 class="fw-bold">検索結果</h1>
+    
+    
+    <div class="d-flex justify-content-sm-center">
+    
+   
+
+        <% if @model == 'user' %>
+	        <h3 class="fw-bold">ユーザーで検索 "<%= @content %>"</h3>
+            <%= render 'admin/users/search_index', users: @records %>
+  
+        <% elsif @model == 'post' %>
+        	<h3 class="fw-bold">投稿で検索 "<%= @content %>"</h3>
+            <%= render 'admin/posts/search_index', posts: @records %>
+        <% end %>
+        
+    </div>
+ </div>
+</div>
+

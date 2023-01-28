@@ -1,10 +1,10 @@
-    <table class='table table-hover table-inverse mt-5'>
+<table class='table table-hover table-inverse mt-5'>
       <thead>
         <tr>
           <th></th>
           <th>ユーザー名</th>
           <th>投稿数</th>
-          <th>いいね&コメント</th>
+          <th>コメント</th>
         </tr>
       </thead>
       <tbody>
@@ -12,7 +12,7 @@
         <% users.reverse.each do |user| %>
          <tr>
           <td>
-            <%= link_to user_path(user) do %>
+            <%= link_to admin_user_path(user) do %>
                 <%= image_tag user.get_profile_image(100, 100), class: "img-thumbnail" %><br>
             <% end %>
           </td>
@@ -21,11 +21,7 @@
           </td>
           <td><%= user.posts.count %></td>
           <td>
-            <i class="fa-regular fa-heart" style="color: red;" ></i><%= user.favorites.count %>
-            
-            
             <i class="fa-regular fa-comment-dots"></i><%= "#{user.post_comments.count}" %>
-            
           </td>
          </tr>
         <% end %>

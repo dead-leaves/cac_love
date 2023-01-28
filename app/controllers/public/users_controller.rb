@@ -4,7 +4,7 @@ before_action :ensure_guest_user, only: [:edit]
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.order("created_at DESC").page(params[:page])
   end
 
   def edit
@@ -16,7 +16,7 @@ before_action :ensure_guest_user, only: [:edit]
     if  @user.update(user_params)
      redirect_to user_path(@user)
     else
-      render :index
+      render :edit
     end
     
   end
@@ -29,6 +29,7 @@ before_action :ensure_guest_user, only: [:edit]
     @user = User.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
     @favorite_posts = Post.find(favorites)
+    @favorite_post = Post.order("created_at DESC").page(params[:page])
   end
 
   def destroy

@@ -1,38 +1,52 @@
 <%= render "public/shared/header" %>
-<h1>新規登録</h1>
-<%= form_with model: @post, url: posts_path, method: :post do |f| %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      
+      <%= render "public/shared/post_error", post: @post %>
+      
+      
+      <h1 class="fw-bold mb-5">新規登録</h1>
+  
+        <%= form_with model: @post, url: posts_path, method: :post do |f| %>
+
+          <div class="form-group fw-bold mb-3">
+            <label for=post_image>画像</label><br>
+            <%= f.file_field :image, accept: "image/*" %>
+          </div>
+          
+          
+          <div class="form-group fw-bold mb-3">
+            <label for="post-title">title</label>
+            <div class="field_with_errors"><%= f.text_field :title, class: "form-control post_title" %></div>
+          </div>
 
 
-<div class=field>
-  <label for=post_title>タイトル</label>
-  <%= f.text_field :title %>
-</div>
 
-<div class=field>
-  <label for=post_image>画像</label>
-  <%= f.file_field :image, accept: "image/*" %>
-</div>
-
-<div class=field>
-  <label fot=post_body>本文</label>
-  <%= f.text_area :body %>
-</div>
+          <div class="form-group fw-bold mb-3">
+            <label for="post_body">body</label>
+            <div class="field_with_errors"><%= f.text_area :body, class: "form-control post_body" %></div>
+          </div>
 
 
-<div class='form-group'>
-  <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :tag_name) do |tag| %>
-    <div class='form-check'>
-      <%= tag.label class: 'form-check-label' do %>
-          <%= tag.check_box class: 'form-check-input' %>
-          <%= tag.text %>
-      <% end %>
+          <div class="form-group fw-bold">
+            <label for="post_tag">タグを選択</label>
+            <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :tag_name) do |tag| %>
+              <div class='form-check'>
+                <%= tag.label class: 'form-check-label' do %>
+                  <%= tag.check_box class: 'form-check-input' %>
+                  <%= tag.text %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="form-group mt-3">
+            <div class="field_with_errors"><%= f.submit "投稿", class: "btn btn-outline-primary" %></div>
+          </div>
+
+        <% end %>
     </div>
-  <% end %>
+  </div>
 </div>
-
-
-<div class=actions>
-  <%= f.submit "投稿" %>
-</div>
-
-<% end %>

@@ -5,13 +5,9 @@
     
     <div class="col-md-3">
      <div class="bg-success p-1 text-dark bg-opacity-25">
-        <% if user_signed_in? %>
-
-         <%= image_tag current_user.get_profile_image(200, 200), class: "rounded-circle"; %>
-         <%= current_user.name %></br>
-         <%= link_to new_post_path do %><i class="fa-solid fa-pen-to-square fa-2x mt-2"></i>投稿する<% end %>
-
-        <% end %>
+ 
+      <%= render "public/shared/side" %>
+ 
      </div>
     </div>
     

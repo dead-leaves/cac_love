@@ -1,34 +1,72 @@
 <%= render "admin/shared/header" %>
 
+<div class="container-fluid">
+ <div class="row">
+    
+    <div class="col-md-3">
+     <div class="bg-success p-1 text-dark bg-opacity-25">
+        
+         <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle"; %>
+         <h5 class="fw-bold"><%= @user.name %></h5>
+         
+          <div class="card">
+            <div class="card-header">
+             自己紹介
+            </div>
+              <div class="card-body">
+               <p class="card-text">
+                 <%= @user.introduction %>
+               </p>
+              </div>
+            <div class="card-footer">
+              <%= link_to admin_user_path(@user), class: "btn btn-outline-danger", method: :delete, "data-confirm" => "このユーザーの全てのデータが消えますが、本当に削除しますか?" do %>
+                このユーザーを削除する
+              <% end %>
+            </div>
+          </div>
+          
+         
 
-<h1>ユーザー詳細</h1>
+     </div>
+    </div>
+    
+    
 
-<div>
-  <%= image_tag @user.get_profile_image(200,200) %>
-  <h3><%= @user.name %></h3>
-  <p><%= @user.introduction %></p>
-  <%= link_to admin_user_path(@user), class: "btn btn-outline-danger", method: :delete, "data-confirm" => "このユーザーの全てのデータが消えますが、本当に削除しますか?" do %>
-    このユーザーを削除する
-  <% end %>
-</div>
+    <div class="col-md-9">
+            <h1 class="fw-bold"><%= @user.name %>さんの投稿一覧</h1>
+            
+     <table class='table table-hover table-inverse mt-5'>
+      <thead>
+        <tr>
+          <th></th>
+          <th>タイトル</th>
+          <th>コメント</th>
+          <th>投稿日</th>
+        </tr>
+      </thead>
+      <tbody>
+          
+        <% @posts.each do |post| %>
+         <tr>
+          <td>
+            <%= link_to admin_post_path(post) do %>
+                <%= image_tag post.get_image(100, 100), class: "img-thumbnail" %><br>
+            <% end %>
+          </td>
+          <td><%= post.title %></td>
+          <td>
+            <%= link_to admin_post_path(post.id) do %>
+            <i class="fa-regular fa-comment-dots"></i><%= "#{post.post_comments.count}" %>
+            <% end %>
+          </td>
+          <td><%= l post.created_at %></td>
+         </tr>
+        <% end %>
+      </tbody>
+    </table>
+        
+    </div>
 
-
-
-<h4><%= @user.name %>さんの投稿一覧</h4>
-<% @posts.each do |post| %>
-
-<div>
-<%= link_to admin_post_path(post.id) do %>
-  <%= image_tag post.get_image(100,100) %>
-<% end %>
-
-  <%= l post.created_at %>
-  <p>タイトル：<%= post.title %></p>
-  <p>本文<%= post.body %></p>
-  <p>コメント件数</p>
-  <p><%= link_to "#{post.post_comments.count} コメント", admin_post_path(post.id) %></p>
-</div>
-
-
-<% end %>
+ </div>
 <%= paginate @posts %>
+</div>

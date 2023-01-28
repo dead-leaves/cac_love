@@ -1,18 +1,67 @@
 <%= render "public/shared/header" %>
 
-<h1>ユーザー詳細</h1>
+<div class="container-fluid">
+ <div class="row">
+    
+    <div class="col-md-3">
+     <div class="bg-success p-1 text-dark bg-opacity-25">
+         
+         <%= render "public/shared/user_show", user: @user %>
+        
+     </div>
+    </div>
+    
+    
 
-<div>
-  <%= image_tag @user.get_profile_image(200,200) %>
-  <h3><%= @user.name %></h3>
-  <p><%= @user.introduction %></p>
+    <div class="col-md-9">
+        <h1 class="fw-bold">お気に入り<i class="fa-solid fa-heart" style="color: red;"></i>投稿</h1>
+        
+     <table class='table table-hover table-inverse mt-5'>
+      <thead>
+        <tr>
+          <th></th>
+          <th>タイトル</th>
+          <th>タグ</th>
+          <th>コメント</th>
+          <th>投稿者</th>
+          <th>投稿日</th>
+        </tr>
+      </thead>
+      <tbody>
+          
+          
+        <% @favorite_posts.each do |post| %>
+         <tr>
+          <td>
+            <%= link_to post_path(post) do %>
+                <%= image_tag post.get_image(100, 100), class: "img-thumbnail" %><br>
+            <% end %>
+          </td>
+          <td><%= post.title %></td>
+          <td>
+            <% post.tags.each do |tag| %>
+                <div class="badge rounded-pill bg-success"><%= tag.tag_name %></div>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to post_path(post.id) do %>
+            <i class="fa-regular fa-comment-dots"></i><%= "#{post.post_comments.count}" %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to user_path(post.user.id) do %>
+                <%= image_tag post.user.get_profile_image(50, 50), class: "rounded-circle"; %>
+                <%= post.user.name %>
+            <% end %>
+          </td>
+          <td><%= l post.created_at %></td>
+         </tr>
+        <% end %>
+      </tbody>
+    </table>
+        
+    </div>
+
+ </div>
+<%= paginate @favorite_post %>
 </div>
-
-<h3>お気に入り投稿</h3>
-<% @favorite_posts.each do |post| %>
-
- <%= link_to post_path(post) do %>
-    <%= image_tag post.get_image(100,100) %>
- <% end %>
-    <%= post.title %>
-<% end %>

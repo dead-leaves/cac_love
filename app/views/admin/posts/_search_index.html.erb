@@ -1,12 +1,9 @@
-
-
-     <table class='table table-hover table-inverse mt-5'>
+<table class='table table-hover table-inverse mt-5'>
       <thead>
         <tr>
           <th></th>
           <th>タイトル</th>
-          <th>タグ</th>
-          <th>いいね&コメント</th>
+          <th>コメント</th>
           <th>投稿者</th>
           <th>投稿日</th>
         </tr>
@@ -16,24 +13,18 @@
         <% posts.reverse.each do |post| %>
          <tr>
           <td>
-            <%= link_to post_path(post) do %>
+            <%= link_to admin_post_path(post) do %>
                 <%= image_tag post.get_image(100, 100), class: "img-thumbnail" %><br>
             <% end %>
           </td>
           <td><%= post.title %></td>
           <td>
-            <% post.tags.each do |tag| %>
-                <div class="badge rounded-pill bg-success"><%= tag.tag_name %></div>
-            <% end %>
-          </td>
-          <td>
-            <i class="fa-regular fa-heart" style="color: red;" ></i><%= post.favorites.count %>
-            <%= link_to post_path(post.id) do %>
+            <%= link_to admin_post_path(post.id) do %>
             <i class="fa-regular fa-comment-dots"></i><%= "#{post.post_comments.count}" %>
             <% end %>
           </td>
           <td>
-            <%= link_to user_path(post.user.id) do %>
+            <%= link_to admin_user_path(post.user.id) do %>
               <%= image_tag post.user.get_profile_image(50, 50), class: "rounded-circle"; %>
               <%= post.user.name %>
             <% end %>

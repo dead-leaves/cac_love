@@ -6,11 +6,13 @@ Rails.application.routes.draw do
 
   namespace :admin do
 
-     get '/' => 'homes#top'
+     
      
      get '/search', to: 'searches#search'
+     
+     get '/' => 'users#index'
 
-     resources :users, only: [:index, :show, :destroy]
+     resources :users, only: [:show, :destroy] 
 
      resources :posts, only: [:index, :show, :destroy] do
        resources :post_comments, only: [:destroy]

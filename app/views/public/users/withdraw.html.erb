@@ -1,6 +1,29 @@
 <%= render "public/shared/header" %>
-<h1>本当に削除しますか？</h1>
-<p>削除すると全てのデータが消えてしまいます。</p>
 
-<%= link_to "はい", user_path(@user), method: :delete %>|<%= link_to "いいえ", posts_path %>
+<div class="container">
+    <div class="row">
+        <div class="d-flex justify-content-sm-center mt-5">
+            <h1 class="fw-bold mb-3">本当に退会しますか？</h1>
+        </div>
+        <div class="d-flex justify-content-sm-center mt-2">
+            <span class="text-danger fw-bold">退会すると全てのデータが消えてしまいます!</span>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="d-flex justify-content-sm-center mt-5">
+            <%= link_to user_path(@user), class: "btn btn-outline-danger me-5",  method: :delete do %>
+                はい
+            <% end %>
+            
+            <%= link_to  posts_path, class: "btn btn-outline-success" do %>
+                いいえ
+            <% end %>
+        </div>
+    </div>
+</div>
+
+
+
+
 

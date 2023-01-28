@@ -1,5 +1,53 @@
 <%= render "admin/shared/header" %>
-<h1>Admin::Posts#index</h1>
-<p>Find me in app/views/admin/posts/index.html.erb</p>
 
-<%= paginate @posts %>
+    <div class="container">
+     <div class="row">
+
+        <h1 class="fw-bold">みんなの投稿一覧</h1>
+        
+        <div class="d-flex justify-content-sm-center">
+        
+        
+         <table class='table table-hover table-inverse mt-5'>
+          <thead>
+            <tr>
+              <th></th>
+              <th>タイトル</th>
+              <th>コメント</th>
+              <th>投稿者</th>
+              <th>投稿日</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+
+          
+            <% @posts.each do |post| %>
+                <tr>
+                  <td>
+                    <%= link_to admin_post_path(post) do %>
+                        <%= image_tag post.get_image(100, 100), class: "img-thumbnail" %><br>
+                    <% end %>
+                  </td>
+                  <td><%= post.title %></td>
+                  <td>
+                    <%= link_to admin_post_path(post.id) do %>
+                        <i class="fa-regular fa-comment-dots"></i><%= "#{post.post_comments.count}" %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to admin_user_path(post.user.id) do %>
+                      <%= image_tag post.user.get_profile_image(50, 50), class: "rounded-circle"; %>
+                      <%= post.user.name %>
+                    <% end %>
+                  </td>
+                  <td><%= l post.created_at %></td>
+                </tr>
+            <% end %>
+          </tbody>
+         </table>
+        
+        </div>
+    </div>
+    <%= paginate @posts %>
+    </div>

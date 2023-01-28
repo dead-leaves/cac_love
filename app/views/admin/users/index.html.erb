@@ -1,17 +1,47 @@
 <%= render "admin/shared/header" %>
-<h1>会員一覧</h1>
 
-<% @users.each do |user| %>
+<div class="container">
+ <div class="row">
+     
+    <h1 class="fw-bold">ユーザー一覧</h1>
+    
+    
+    <div class="d-flex justify-content-sm-center">
+        
+        
+     <table class='table table-hover table-inverse mt-5'>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>ユーザー</th>
+          <th>投稿数</th>
+          <th>コメント</th>
+        </tr>
+      </thead>
+      <tbody>
+          
+        <% @users.each do |user| %>
+         <tr>
+          <td>
+           <%= user.id %>
+          </td>
+          <td>
+            <%= link_to admin_user_path(user.id) do %>
+                <%= image_tag user.get_profile_image(100,100), class: "img-thumbnail" %>
+                <%= user.name %>
+            <% end %>
+          </td>
+          <td>
+            <%= user.posts.count %>
+          </td>
+          <td><i class="fa-regular fa-comment-dots"></i><%= "#{user.post_comments.count}" %></td>
+         </tr>
+        <% end %>
+      </tbody>
+     </table>
+        
+    </div>
 
-  <%= user.id %>
-
-  <%= link_to admin_user_path(user.id) do %>
-    <%= image_tag user.get_profile_image(200,200) %>
-    <%= user.name %>
-  <% end %>
-  投稿数<%= user.posts.count %>
-  コメント数<%= user.post_comments.count %>
-
-<% end %>
-
+ </div>
 <%= paginate @users %>
+</div>

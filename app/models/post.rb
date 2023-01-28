@@ -7,6 +7,10 @@ class Post < ApplicationRecord
   has_many :tags, through: :search_tags, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  
+  validates :title, presence: true
+  validates :body, presence: true
+  validates :category, acceptance: true
 
 
   def get_image(width, height)

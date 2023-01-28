@@ -1,23 +1,55 @@
 <%= render "public/shared/header" %>
 
-
-<h2>プロフィール編集</h2>
-
-<%= form_with model: @user, url: user_path(@user), method: :patch do |f| %>
-
-  <label for="inputName">Name</label>
-  <%= f.text_field :name, autofocus: true, id: "inputName", placeholder: "名前"%>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+       <% if @user.errors.any? %>
+        <%= @user.errors.count %>件のエラーが発生しました
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li class="text-danger">
+              <%= message %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+      
+     
+      <h1 class="fw-bold mb-5">プロフィール編集</h1>
   
-  <label for="inputImage">ProfileImage</label>
-  <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
-  
-  <div class="form-group">
-    <label for="user_introduction">Introduction</label>
-          <%= f.text_area :introduction, class: "form-control introduction" %>
+        <%= form_with model: @user, url: user_path(@user), method: :patch do |f| %>
+
+          <div class="form-group fw-bold mb-3">
+            <label for="inputImage">ProfileImage</label><br>
+            <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
+          </div>
+          
+          
+          <div class="form-group fw-bold mb-3">
+            <label for="inputName" >Name</label>
+            <div class="field_with_errors">
+              <%= f.text_field :name, autofocus: true, id: "inputName", placeholder: "名前" %>
+            </div>
+          </div>
+
+
+
+          <div class="form-group fw-bold mb-3">
+            <label for="user_introduction">Introduction</label>
+            <div class="field_with_errors">
+              <%= f.text_area :introduction, placeholder: "自己紹介", class: "form-control introduction" %>
+            </div>
+          </div>
+
+          <div class="form-group mt-3">
+            <div class="field_with_errors"><%= f.submit "変更を保存", class: "btn btn-outline-success" %></div>
+          </div>
+
+        <% end %>
+        <%= link_to withdraw_user_path(@user), class: "btn btn-outline-danger mt-4" do %>
+          退会する
+        <% end %>
+    </div>
   </div>
-  
-  <%= f.submit "変更を保存" %>
-  
-<% end %>
+</div>
 
-<%= link_to "退会する", withdraw_user_path(@user) %>
