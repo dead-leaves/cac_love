@@ -17,13 +17,13 @@
               </div>
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <%= image_tag '76ECFD41-A083-4853-897E-62C383E478DE.png', width: 400, height: 400 %>
+                  <%= image_tag asset_path('76ECFD41-A083-4853-897E-62C383E478DE.png'), width: 400, height: 400 %>
                 </div>
                 <div class="carousel-item">
-                  <%= image_tag 'C928BF26-D9F3-446A-A77C-48B917A20AF7_1_105_c.jpeg', width: 400, height: 400 %>
+                  <%= image_tag asset_path('C928BF26-D9F3-446A-A77C-48B917A20AF7_1_105_c.jpeg'), width: 400, height: 400 %>
                 </div>
                 <div class="carousel-item">
-                  <%= image_tag '8B67A87C-EC1B-4685-9379-7B3404028484_1_105_c.jpeg', width: 500, height: 400 %>
+                  <%= image_tag asset_path('8B67A87C-EC1B-4685-9379-7B3404028484_1_105_c.jpeg'), width: 500, height: 400 %>
                 </div>
               </div>
               <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -40,7 +40,7 @@
         
         <div class="d-flex justify-content-sm-center mt-3">
           <span class="text-center text-danger">
-            ※投稿、コメント機能のご利用にはログインが必要です<br>
+            ※投稿、コメント機能のご利用には<%= link_to "アカウント作成", new_user_registration_path %>が必要です<br>
             ※当サイトにおいて下記の禁止事項のいずれかに該当した場合、予告なく投稿データ・若しくはユーザーを抹消します
           </span>
         </div>
