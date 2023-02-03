@@ -6,33 +6,33 @@
 
       <%= render "public/shared/post_error", post: @post %>
      
-      <h1 class="fw-bold mb-5">編集</h1>
+      <h1 class="font-weight-bold mb-5">編集</h1>
   
         <%= form_with model: @post, url: post_path(@post), method: :patch do |f| %>
         
         
           
 
-          <div class="form-group fw-bold mb-3">
+          <div class="form-group font-weight-bold mb-3">
             <label for=post_image>画像</label><br>
             <%= f.file_field :image, accept: "image/*" %>
           </div>
           
           
-          <div class="form-group fw-bold mb-3">
+          <div class="form-group font-weight-bold mb-3">
             <label for="post_title" >title</label>
             <div class="field_with_errors"><%= f.text_field :title, class: "form-control post_title" %></div>
           </div>
 
 
 
-          <div class="form-group fw-bold mb-3">
+          <div class="form-group font-weight-bold mb-3">
             <label for="post_body">body</label>
             <div class="field_with_errors"><%= f.text_area :body, class: "form-control post_body" %></div>
           </div>
 
 
-          <div class="form-group fw-bold">
+          <div class="form-group font-weight-bold">
             <label for="post_tag">タグを選択</label>
             <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :tag_name) do |tag| %>
               <div class='form-check'>

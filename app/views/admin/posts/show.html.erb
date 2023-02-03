@@ -2,9 +2,10 @@
 
 <div class="container">
   
-   <div class="row">
-     <h1 class="fw-bold">投稿詳細</h1>
    
+     <h1 class="font-weight-bold">投稿詳細</h1>
+   
+    <div class="row">
      <div class="col-md-6 mb-3">
       <%= image_tag @post.get_image(450, 450) %>
      </div>
@@ -44,33 +45,31 @@
    
     <div class="row">
       <div class="col-lg-8">
-        <div>
-         <button class="btn btn-primary mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-         aria-expanded="false" aria-controls="collapseExample">コメント一覧を見る▼</button>
-        </div>
-  
-        <div class="collapse" id="collapseExample">
-          <div class="card card-body">
-            <% @post.post_comments.each do |post_comment| %>
-              <%= l post_comment.created_at %>
+          
+          <button class="btn btn-primary" data-toggle="collapse" data-target="#example-1" aria-expand="false" aria-controls="example-1">
+                コメント一覧を見る▼
+              </button>
+              <div class="collapse" id="example-1">
+                <div class="card card-body">
+                  <% @post.post_comments.each do |post_comment| %>
+                      <%= l post_comment.created_at %>
             
-              <%= link_to admin_user_path(post_comment.user) do %>
-                <%= post_comment.user.name %>さんからのコメント<br>
-              <% end %>
-            
-            <div class="mt-4">
-              <div class="border-bottom border-success">
-                <%= post_comment.comment %>
-                
-                <%= link_to admin_post_post_comment_path(post_comment.post, post_comment), class: "btn btn-outline-danger", method: :delete, "data-confirm" => "本当に削除しますか?" do %>
-                  削除
-                <% end %>
+                      <%= link_to admin_user_path(post_comment.user) do %>
+                        <%= post_comment.user.name %>さんからのコメント<br>
+                      <% end %>
+              
+                  <div class="mt-4">
+                        <div class="border-3 border-bottom border-success">
+                          <%= post_comment.comment %>
+                          
+                          <%= link_to admin_post_post_comment_path(post_comment.post, post_comment), class: "btn btn-outline-danger", method: :delete, "data-confirm" => "本当に削除しますか?" do %>
+                              削除
+                          <% end %>
+                        </div>
+                  </div>
+                 <% end %>
+                </div>
               </div>
-            </div>
-            <% end %>
-          </div>
-        </div>
-        
       </div>
     </div>
 </div>

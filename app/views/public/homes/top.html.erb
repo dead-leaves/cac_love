@@ -1,64 +1,67 @@
 <%= render "public/shared/header" %>
 
 <div class="container">
-    <div class="row">
-        <div class="d-flex justify-content-sm-center mt-3">
+    
+        <div class="d-flex flex-column align-items-center mt-2">
           <h1 class="fw-bold">かく🌵らゔ</h1>
         </div>
-      
-        <div class="d-flex justify-content-sm-center mt-5 mb-3">
+    
+    
+        <div class="d-flex flex-column align-items-center mt-5 mb-3">
           
-         
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+  
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <%= image_tag asset_path('76ECFD41-A083-4853-897E-62C383E478DE.png'), width: 400, height: 400 %>   
               </div>
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <%= image_tag asset_path('76ECFD41-A083-4853-897E-62C383E478DE.png'), width: 400, height: 400 %>
-                </div>
-                <div class="carousel-item">
-                  <%= image_tag asset_path('C928BF26-D9F3-446A-A77C-48B917A20AF7_1_105_c.jpg'), width: 400, height: 400 %>
-                </div>
-                <div class="carousel-item">
-                  <%= image_tag asset_path('8B67A87C-EC1B-4685-9379-7B3404028484_1_105_c.jpg'), width: 500, height: 400 %>
-                </div>
+              <div class="carousel-item">
+                <%= image_tag asset_path('C928BF26-D9F3-446A-A77C-48B917A20AF7_1_105_c.jpg'), width: 400, height: 400 %>    </div>
+              <div class="carousel-item">
+                <%= image_tag asset_path('8B67A87C-EC1B-4685-9379-7B3404028484_1_105_c.jpg'), width: 500, height: 400 %>    </div>
               </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-        </div>
+  
+              <div type="button" class="carousel-control-prev" data-target="#carouselExampleIndicators" data-slide="prev">
+                <
+              </div>
+              <div type="button" class="carousel-control-next" data-target="#carouselExampleIndicators" data-slide="next">
+                >
+              </div>
+          </div>
         
         
-        <div class="d-flex justify-content-sm-center mt-3">
-          <span class="text-center text-danger">
+        
+        
+        
+       
+          <span class="text-center text-danger mt-2">
             ※投稿、コメント機能のご利用には<%= link_to "アカウント作成", new_user_registration_path %>が必要です<br>
             ※当サイトにおいて下記の禁止事項のいずれかに該当した場合、予告なく投稿データ・若しくはユーザーを抹消します
           </span>
-        </div>
         
         
-        <div class="d-flex justify-content-sm-center mt-5">
-          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            禁止事項
-          </button>
+        
+        <button type="button" class="btn btn-danger mt-4" data-toggle="modal" data-target="#exampleModalLong">禁止事項</button>
+          
 
-            
-          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
-               <div class="modal-content">
+
+          <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
                 <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="staticBackdropLabel">ユーザーは，本サービスの利用にあたり，以下の行為をしてはなりません。</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                  <h3 class="modal-title" id="exampleModalLongTitle">ユーザーは，本サービスの利用にあたり，以下の行為をしてはなりません。</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
+                 
                 <div class="modal-body">
                   <ol>
                     <li>法令または公序良俗に違反する行為</li>
@@ -92,11 +95,11 @@
                   </ol>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-    </div>
+    
 </div>

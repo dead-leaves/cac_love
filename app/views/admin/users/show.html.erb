@@ -4,10 +4,10 @@
  <div class="row">
     
     <div class="col-md-3">
-     <div class="bg-success p-1 text-dark bg-opacity-25">
+     <div class="bg-light p-1 text-dark">
         
          <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle"; %>
-         <h5 class="fw-bold"><%= @user.name %></h5>
+         <h5 class="font-weight-bold"><%= @user.name %></h5>
          
           <div class="card">
             <div class="card-header">
@@ -19,9 +19,11 @@
                </p>
               </div>
             <div class="card-footer">
-              <%= link_to admin_user_path(@user), class: "btn btn-outline-danger", method: :delete, "data-confirm" => "このユーザーの全てのデータが消えますが、本当に削除しますか?" do %>
-                このユーザーを削除する
-              <% end %>
+                <% if @user.name != "guestuser" %>
+                    <%= link_to admin_user_path(@user), class: "btn btn-outline-danger", method: :delete, "data-confirm" => "このユーザーの全てのデータが消えますが、本当に削除しますか?" do %>
+                        このユーザーを削除する
+                    <% end %>
+                <% end %>
             </div>
           </div>
           
@@ -33,7 +35,7 @@
     
 
     <div class="col-md-9">
-            <h1 class="fw-bold"><%= @user.name %>さんの投稿一覧</h1>
+            <h1 class="font-weight-bold"><%= @user.name %>さんの投稿一覧</h1>
             
      <table class='table table-hover table-inverse mt-5'>
       <thead>

@@ -2,7 +2,7 @@
         <%= post.errors.count %>件のエラーが発生しました
         <ul>
           <% post.errors.full_messages.each do |message| %>
-            <li class="text-danger">
+            <li class="font-weight-bold text-danger">
               <%= message %>
             </li>
           <% end %>

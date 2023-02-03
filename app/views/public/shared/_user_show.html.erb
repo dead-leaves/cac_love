@@ -1,6 +1,6 @@
 
          <%= image_tag user.get_profile_image(100,100), class: "rounded-circle"; %>
-         <h5 class="fw-bold"><%= user.name %></h5>
+         <h5 class="font-weight-bold"><%= user.name %></h5>
          お気に入り<%= link_to favorites_user_path(@user) do %> 
             <i class="fa-solid fa-heart" style="color: red;"></i><br>
          <% end %>

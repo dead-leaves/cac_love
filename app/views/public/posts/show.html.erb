@@ -2,9 +2,10 @@
 
 <div class="container">
   
-   <div class="row">
+   
      <h1 class="fw-bold">投稿詳細</h1>
    
+    <div class="row">
      <div class="col-md-6 mb-3">
       <%= image_tag @post.get_image(450, 450) %>
      </div>
@@ -15,7 +16,7 @@
            <%= l @post.created_at %>
            
            <% @post.tags.each do |tag| %>
-              <div class="badge rounded-pill bg-success"><%= tag.tag_name %></div>
+              <div class="badge badge-pill badge-success"><%= tag.tag_name %></div>
            <% end %>
   
            <%= link_to user_path(@post.user.id) do %>
@@ -43,6 +44,7 @@
        </div>
      </div>
     </div>
+    
   
   
     <div class="row mt-3 mb-5">
@@ -70,54 +72,48 @@
    
     <div class="row">
       <div class="col-lg-8">
-        <div>
-         <button class="btn btn-primary mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-         aria-expanded="false" aria-controls="collapseExample">コメント一覧を見る▼</button>
-        </div>
-  
-        <div class="collapse" id="collapseExample">
-          <div class="card card-body">
-            <% @post.post_comments.each do |post_comment| %>
+        
+        
+      <button class="btn btn-primary" data-toggle="collapse" data-target="#example-1" aria-expand="false" aria-controls="example-1">
+        コメント一覧を見る▼
+      </button>
+      <div class="collapse" id="example-1">
+        <div class="card card-body">
+          <% @post.post_comments.each do |post_comment| %>
               <%= l post_comment.created_at %>
-            
+              
               <%= link_to user_path(post_comment.user) do %>
                 <%= post_comment.user.name %>さんからのコメント<br>
               <% end %>
-            
-            <div class="mt-4">
-              <div class="border-3 border-bottom border-success">
-                <%= post_comment.comment %>
-                <% if post_comment.user == current_user %>
-                <%= link_to post_post_comment_path(post_comment.post, post_comment), class: "btn btn-outline-danger", method: :delete do %>
-                  削除
-                <% end %>
+              
+              <div class="mt-4">
+                <div class="border-3 border-bottom border-success">
+                  <%= post_comment.comment %>
+                  <% if post_comment.user == current_user %>
+                    <%= link_to post_post_comment_path(post_comment.post, post_comment), class: "btn btn-outline-danger", method: :delete do %>
+                      削除
+                    <% end %>
+                  <% end %>
+                </div>
               </div>
-            </div>
-            <% end %>
-            
-          
-          
-           
-          </div>
+             <% end %>
         </div>
-      
-        <% end %>
+      </div>
       </div>
     </div>
-  
-  
-    <div class="row">
-      <div class="col-lg-6 mt-2">
+        
+      <div class="row">
+        <div class="col-lg-6 mt-2">
       
-        <% if user_signed_in? %>
-          <div>
+          <% if user_signed_in? %>
+      
           <%= form_with model: [@post, @post_comment] do |f| %>
             <%= f.text_area :comment, placeholder: "コメントをここに" %><br>
             <%= f.submit "送信する", class: "btn btn-outline-primary" %>
           <% end %>
-          </div>
+          
         <% end %>
-     </div>
+       </div>
     </div>
 </div>
   

@@ -6,15 +6,20 @@
       <span>かく🌵らゔ</span>
     <% end %>
    
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <button class="navbar-toggler" type="button"
+        data-toggle="collapse"
+        data-target="#navmenu1"
+        aria-controls="navmenu1"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navmenu1">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <% if user_signed_in? %>
 
-        <span class="nav-item fw-bold me-2">
+        <span class="nav-item font-weight-bold me-2">
           🎉ようこそ！<%= current_user.name %>さん
         </span>
 
@@ -41,7 +46,7 @@
 
       </ul>
 
-        <div class="d-flex">
+        <div class="form-inline my-2 my-lg-0 ml-auto">
             <%= render "public/shared/search_form" %>
         </div>
 

@@ -3,7 +3,7 @@
     <%= link_to user_path(current_user) do %>
         <%= image_tag current_user.get_profile_image(100, 100), class: "rounded-circle"; %>
     <% end %>
-    <h5 class="fw-bold"><%= current_user.name %></h5></br>
+    <h5 class="font-weight-bold"><%= current_user.name %></h5></br>
          
 <% end %>
     <%= link_to new_post_path do %><i class="fa-solid fa-pen-to-square fa-2x mt-5"></i>投稿する<% end %>
